@@ -1,6 +1,6 @@
 ## bixHPC
 
-### required packages:
+### Required Packages:
     bcl2fastq
     fastqc
     multiqc
@@ -8,7 +8,7 @@
     homer
     
 
-### Guidelines for CFG core personnel
+### Guidelines for CFG Core Personnel
     Protocol Guide: Demultiplex NextSeq 500
 
     Author: Faraz Ahmed
