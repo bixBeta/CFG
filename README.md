@@ -1,4 +1,4 @@
-## bix.HPC
+## bixHPC
 
 ### required packages:
     bcl2fastq
