@@ -8,7 +8,7 @@
     homer
     
 
-### Guidelines for CFG Core Personnel
+### Guidelines for CFG Core Personnel:
     Protocol Guide: Demultiplex NextSeq 500
 
     Author: Faraz Ahmed
