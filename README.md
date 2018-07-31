@@ -8,8 +8,8 @@
     homer
     
 
-### Guidelines for CFG Core Personnel:
-    Protocol Guide: Demultiplex NextSeq 500
+### Guidelines for CFG Core Personnel: 
+    Protocol Guide: Demultiplex NextSeq 500 ---- for mad7 scripts only
 
     Author: Faraz Ahmed
     Version: 1.2
