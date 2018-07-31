@@ -11,7 +11,7 @@
 ### Guidelines for CFG Core Personnel: 
     Protocol Guide: Demultiplex NextSeq 500 ---- for mad7 scripts only
 
-    Author: Faraz Ahmed
+    Author: FA
     Version: 1.2
 
     Last Updated: 04/26/18
