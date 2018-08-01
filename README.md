@@ -11,7 +11,7 @@
 ### Scripts: 
 
     barcodeSplit.pl: 
-        Demultiplexes based on barcodes of interest.
+        Demultiplexes fastq reads based on barcodes of interest.
     
     bcl2fastq.HPC.sh:
             Demultiplexes Illumina NextSeq 500 samples (bcl intensities to fastq).
