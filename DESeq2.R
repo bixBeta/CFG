@@ -68,7 +68,7 @@ sampleTable <- data.frame(sampleName = sampleNames, fileName = sampleFiles, cond
 
 ## -------------------------------------------------------------------------------------------------------------------
 # adding headers 
-# import Experiment.Name.0026.raw.COUNTS as rawCounts first
+# import Experiment.Name.raw.COUNTS as rawCounts first
 
 n <- (0:18)*2
 n[1] <- 1
@@ -156,4 +156,4 @@ write.csv(pn.An, file = paste0(outputPrefix, ".pn.An.results.csv"))
 
 
 save(countTable, sampleTable, dds, rawCounts, rld, vsd, WD.WN, pd.pn, Ad.An, WD.pd, 
-     WD.Ad, pd.Ad, WN.pn, WN.An, pn.An, file = "Experiment.Name.0026.Rdata")
+     WD.Ad, pd.Ad, WN.pn, WN.An, pn.An, file = "Experiment.Name.Rdata")
