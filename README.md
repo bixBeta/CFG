@@ -8,7 +8,7 @@
     homer
     DESeq2
 
-## Scripts: 
+### Scripts: 
 
     barcodeSplit.pl: 
         Demultiplexes based on barcodes of interest.
