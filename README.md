@@ -29,7 +29,7 @@
             $ sbatch star.align.HPC.sh <SE or PE> <ORG> <ASSEMBLY> 
     
     DESeq2.R:
-        Performs differential gene expression analysis of RNA-seq samples 
+        Performs differential gene expression analysis of RNA-seq samples. 
         (rawCounts used are either from STAR --quantMode GeneCounts or HTSEQ outputs)
     
     reHash.py:
