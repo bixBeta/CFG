@@ -6,7 +6,7 @@
     multiqc
     star
     homer
-    
+    DESeq2
 
 ### Guidelines for CFG Core Personnel: 
     Protocol Guide: Demultiplex NextSeq 500 ---- for mad7 scripts only
@@ -42,7 +42,7 @@
     type ls and hit return; verify that on the terminal window user is able to see the RunFolder Name, SampleSheet.csv and bcl2fastq.usage.sh 
 
     Once verified:
-
+    
     type bash bcl2fastq.usage.v.1.2.sh and hit return.
 
     user will be asked to enter the name of the run folder followed by the PI's name by the terminal
