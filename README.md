@@ -15,7 +15,7 @@
                            Performs quality assessment using FASTQC.
                            Generates a single html (json-based) report plotting all quality metrics.
     star.align.HPC.sh   -> Aligns PE or SE fastq samples to reference genome using star ultrafast aligner. 
-    DESeq2.R            -> Differential gene expression analysis of RNA-seq samples.
+    DESeq2.R            -> Performs differential gene expression analysis of RNA-seq samples. (rawCounts either from STAR --quantMode GeneCounts or HTSEQ outputs)
     reHash.py           -> Rename utility.
     
 
