@@ -35,6 +35,12 @@
     reHash.py:
         Rename utility.
     
+    reveRse.py:
+        Generate i5 reverse complements for Illumina NextSeq 500
+        
+        Usage: 
+        $ python reveRse.py < indices.txt > 
+    
 
 
 
