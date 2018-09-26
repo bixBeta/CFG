@@ -36,7 +36,7 @@
         Rename utility.
     
     reveRse.py:
-        Generates i5 reverse complements for Illumina NextSeq 500
+        Generates i5 reverse complements for Illumina NextSeq 500 samples. 
         
         Usage: 
         $ python reveRse.py < indices.txt > 
