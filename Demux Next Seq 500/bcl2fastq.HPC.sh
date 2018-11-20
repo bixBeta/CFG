@@ -3,7 +3,7 @@
 #  bcl2fastq.HPC.sh
 #  BiX.alpha
 #
-#  Created by BiX on 5/29/18.
+#  Created by Faraz Ahmed on 5/29/18.
 #
 # initial commit FA180529
 
