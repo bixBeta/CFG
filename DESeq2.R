@@ -1,136 +1,80 @@
-# import count tables ($ paste A_D_1.raw.counts A_D_2.raw.counts A_D_3.raw.counts A_N_1.raw.counts A_N_2.raw.counts A_N_3.raw.counts p_D_1.raw.counts p_D_2.raw.counts p_D_3.raw.counts p_N_1.raw.counts p_N_2.raw.counts p_N_3.raw.counts WT_D_1.raw.counts WT_D_2.raw.counts WT_D_3.raw.counts WT_N_1.raw.counts WT_N_2.raw.counts WT_N_3.raw.counts > Experiment.Name.raw.COUNTS.txt)
+#!/bin/env RScript
+# written by Faraz Ahmed 
+# initial commit 11/15/2018
+## -------------------------------------------------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------------------------
 
-
-outputPrefix <- "Experiment.Name"
+		# USAGE SYNTAX:
+		# $ RScript DESeq2.R <Experiment.Name> <Numerator> <Denominator>  
 
 ## -------------------------------------------------------------------------------------------------------------------
-# sampleTable prep  <-  phenoTable
-
-sampleFiles <- c("A_D_1.raw.counts", 
-                 "A_D_2.raw.counts",
-                 "A_D_3.raw.counts",
-                 "A_N_1.raw.counts", 
-                 "A_N_2.raw.counts", 
-                 "A_N_3.raw.counts",
-                 "p_D_1.raw.counts", 
-                 "p_D_2.raw.counts", 
-                 "p_D_3.raw.counts",
-                 "p_N_1.raw.counts", 
-                 "p_N_2.raw.counts", 
-                 "p_N_3.raw.counts", 
-                 "WT_D_1.raw.counts", 
-                 "WT_D_2.raw.counts", 
-                 "WT_D_3.raw.counts", 
-                 "WT_N_1.raw.counts", 
-                 "WT_N_2.raw.counts", 
-                 "WT_N_3.raw.counts")
+## -------------------------------------------------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------------------------
 
 
-sampleNames     <- c("AD1",
-                     "AD2",
-                     "AD3",
-                     "AN1",
-                     "AN2",
-                     "AN3",
-                     "PD1",
-                     "PD2",
-                     "PD3",
-                     "PN1",
-                     "PN2",
-                     "PN3",
-                     "WD1",
-                     "WD2",
-                     "WD3",
-                     "WN1",
-                     "WN2",
-                     "WN3")
+suppressWarnings(library("dplyr"))
+suppressWarnings(library("DESeq2"))
+## -------------------------------------------------------------------------------------------------------------------
+args <-  commandArgs(trailingOnly = T)
+outputPrefix <- args[1] # Experiment Name e.g. Morgan.Sammons.0002
+numerator   <- args[2]
+denominator <- args[3]
 
-sampleCondition <- c("AD",
-                     "AD",
-                     "AD",
-                     "ANU",
-                     "ANU",
-                     "ANU",
-                     "PD",
-                     "PD",
-                     "PD",
-                     "PN",
-                     "PN",
-                     "PN",
-                     "WD",
-                     "WD",
-                     "WD",
-                     "WN",
-                     "WN",
-                     "WN")
-
-sampleTable <- data.frame(sampleName = sampleNames, fileName = sampleFiles, condition = sampleCondition)
 
 ## -------------------------------------------------------------------------------------------------------------------
-# adding headers 
-# import Experiment.Name.raw.COUNTS as rawCounts first
 
-n <- (0:18)*2
+phenoData <- read.csv(file = "phenoData.csv", header = T)
+countMatrix <- read.table(file = "countMatrix.txt", header = F)
+
+
+## -------------------------------------------------------------------------------------------------------------------
+
+# --- storing meta info -------------------------
+
+sampleNames <- phenoData$sampleName
+condition <- phenoData$condition
+myDim <- ncol(countMatrix)/2
+rawCounts <- countMatrix
+
+n <- (0:myDim)*2
 n[1] <- 1
+
 countTable <- rawCounts[,n]
-colnames(countTable) <- c("gene",
-                          "AD1",
-                          "AD2",
-                          "AD3",
-                          "AN1",
-                          "AN2",
-                          "AN3",
-                          "PD1",
-                          "PD2",
-                          "PD3",
-                          "PN1",
-                          "PN2",
-                          "PN3",
-                          "WD1",
-                          "WD2",
-                          "WD3",
-                          "WN1",
-                          "WN2",
-                          "WN3")
-row.names(countTable) <- countTable$gene
-countTable<- countTable[,2:19]
-sampleTable$sampleName == colnames(countTable)
+rownames(countTable) <- countTable[,1]
+countTable <- select(countTable, -V1)
+colnames(countTable) <- phenoData$sampleName
+
+# --- final check ------------------------------
+phenoData$sampleName == colnames(countTable)
+
 
 
 # FOR HTSEQ  -- CHECK 
 #grep("__",x = row.names(countTable))
 #countTable[grep("__",x = row.names(countTable)),] # rm if TRUE
 
-#countTable <- countTable[1:26364,]
+#countTable <- countTable[1:26364,] # check rows total
 #countTable[grep("__",x = row.names(countTable)),] # verify
 
+print(" ", quote = F)
+print(" ", quote = F)
+print("                           RUNNING DESEQ2                              ", quote = F)
+print(" ", quote = F)
+print(" ", quote = F)
+
 ## -------------------------------------------------------------------------------------------------------------------
-library("DESeq2")
 dds <- DESeqDataSetFromMatrix(countData = countTable,
-                              colData = sampleTable,
+                              colData = phenoData,
                               design = ~ condition)
 
-treatments = c("AD", "ANU", "PD", "PN", "WD", "WN") # Treatments of interest
+treatments = unique(phenoData$condition) # Treatments of interest
 dds$condition <- factor(colData(dds)$condition,
                         levels = treatments)
 
 ## -------------------------------------------------------------------------------------------------------------------
 dds <- DESeq(dds)
-res <- results(dds, alpha = 0.05)
-res
 resultsNames(dds)
-mcols(res, use.names=TRUE) # brief description of res headers
-
-## -------------------------------------------------------------------------------------------------------------------
-WD.WN <- results(dds, contrast=c("condition","WD","WN"))
-pd.pn <- results(dds, contrast=c("condition","PD","PN"))
-Ad.An <- results(dds, contrast=c("condition","AD","ANU"))
-WD.pd <- results(dds, contrast=c("condition","WD","PD"))
-WD.Ad <- results(dds, contrast=c("condition","WD","AD"))
-pd.Ad <- results(dds, contrast=c("condition","PD","AD"))
-WN.pn <- results(dds, contrast=c("condition","WN","PN"))
-WN.An <- results(dds, contrast=c("condition","WN","ANU"))
-pn.An <- results(dds, contrast=c("condition","PN","ANU"))
 
 ## -------------------------------------------------------------------------------------------------------------------
 # transform raw counts into normalized values
@@ -143,17 +87,30 @@ vsd <- varianceStabilizingTransformation(dds, blind=T)
 write.table(as.data.frame(assay(rld)),file = paste0(outputPrefix, ".rlog-transformed-counts.txt"), sep = '\t')
 write.table(as.data.frame(assay(vsd)),file = paste0(outputPrefix, ".vst-transformed-counts.txt"), sep = '\t')
 
-# saving deseq results as .csv
-write.csv(WD.WN, file = paste0(outputPrefix, ".WD.WN.results.csv"))
-write.csv(pd.pn, file = paste0(outputPrefix, ".pd.pn.results.csv"))
-write.csv(Ad.An, file = paste0(outputPrefix, ".Ad.An.results.csv"))
-write.csv(WD.pd, file = paste0(outputPrefix, ".WD.pd.results.csv"))
-write.csv(WD.Ad, file = paste0(outputPrefix, ".WD.Ad.results.csv"))
-write.csv(pd.Ad, file = paste0(outputPrefix, ".pd.Ad.results.csv"))
-write.csv(WN.pn, file = paste0(outputPrefix, ".WN.pn.results.csv"))
-write.csv(WN.An, file = paste0(outputPrefix, ".WN.An.results.csv"))
-write.csv(pn.An, file = paste0(outputPrefix, ".pn.An.results.csv"))
+## -------------------------------------------------------------------------------------------------------------------
+## use contrast to drop deseq2 results for specific conditions; following are some expamples
 
+# WD.WN <- results(dds, contrast=c("condition","WD","WN"), alpha = 0.05)
+# pd.pn <- results(dds, contrast=c("condition","PD","PN"), alpha = 0.05)
+# Ad.An <- results(dds, contrast=c("condition","AD","ANU"), alpha = 0.05)
+# write.csv(WD.WN, file = paste0(outputPrefix, ".WD.WN.results.csv"))
+# write.csv(pd.pn, file = paste0(outputPrefix, ".pd.pn.results.csv"))
+# write.csv(Ad.An, file = paste0(outputPrefix, ".Ad.An.results.csv"))
+# write.csv(WD.pd, file = paste0(outputPrefix, ".WD.pd.results.csv"))
 
-save(countTable, sampleTable, dds, rawCounts, rld, vsd, WD.WN, pd.pn, Ad.An, WD.pd, 
-     WD.Ad, pd.Ad, WN.pn, WN.An, pn.An, file = "Experiment.Name.Rdata")
+save(countTable, phenoData, dds, rawCounts, rld, vsd, file = paste0(outputPrefix, ".Rdata"))
+
+custom <- results(dds, contrast=c("condition", numerator, denominator), alpha = 0.05)
+mcols(custom, use.names=TRUE) # brief description of res headers
+summary(custom)
+
+write.csv(custom, file = paste0(outputPrefix, numerator, ".", denominator, ".", "results.csv"))
+
+custom
+
+print(" ", quote = F)
+print(" ", quote = F)
+print("                              DONE   :)                          ", quote = F)
+print(" ", quote = F)
+print(" ", quote = F)
+
