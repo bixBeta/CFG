@@ -104,7 +104,7 @@ custom <- results(dds, contrast=c("condition", numerator, denominator), alpha = 
 mcols(custom, use.names=TRUE) # brief description of res headers
 summary(custom)
 
-write.csv(custom, file = paste0(outputPrefix, numerator, ".", denominator, ".", "results.csv"))
+write.csv(custom, file = paste0(outputPrefix, ".", numerator, ".", denominator, ".results.csv"))
 
 custom
 
