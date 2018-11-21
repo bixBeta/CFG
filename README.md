@@ -37,7 +37,11 @@
             $ RScript DESeq2.R <Experiment.Name> <Numerator> <Denominator>
         
         For DESeq2 processCounts.sh and countMatrix.sh helper scripts are available for 
-        preprocessing of raw counts and creation of the countMatrix.txt file that is needed by the DESeq2.R script. 
+        preprocessing of raw counts and creation of the countMatrix.txt file that is needed 
+        by the DESeq2.R script. 
+        
+        Usage: 
+        $ processCounts.sh <1> or <2>
 
     reHash.py:
         Rename utility.
