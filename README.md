@@ -1,4 +1,4 @@
-## Center for Functional Genomics
+## Pipelines for Center for Functional Genomics
 
 ### Required Packages:
     bcl2fastq
