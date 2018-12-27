@@ -1,4 +1,4 @@
-## Center for Functional Genomics
+## Center for  Genomics
 
 ### Required Packages:
     bcl2fastq
