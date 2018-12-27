@@ -1,4 +1,4 @@
-## bixHPC
+## Center for Functional Genomics
 
 ### Required Packages:
     bcl2fastq
