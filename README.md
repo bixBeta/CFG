@@ -44,11 +44,8 @@
         $ processCounts.sh <1> or <2>
    
    #### CHIP-seq
-      
-      [MACS2](https://github.com/taoliu/MACS)
-      [DeepTools](https://deeptools.readthedocs.io/en/develop/)
-      [Lets go to Quora](https://www.quora.com)
-      
+      [I'm an inline-style link with title](https://www.google.com "Google's Homepage")
+
 ![Screenshot](workflow.png)
 
 
