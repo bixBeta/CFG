@@ -1,6 +1,6 @@
 ## Scripts for Center for Functional Genomics HPC: 
 
-### DEMUX, QC and Utilities
+### Demux, QC and Utilities
 
     bcl2fastq.HPC.sh:
             Demultiplexes Illumina NextSeq 500 samples (bcl intensities to fastq).
