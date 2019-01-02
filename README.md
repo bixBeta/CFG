@@ -44,7 +44,8 @@
         $ processCounts.sh <1> or <2>
    
    #### CHIP-seq
-      [I'm an inline-style link with title](https://www.google.com "Google's Homepage")
+   [MACS2](https://github.com/taoliu/MACS "MACS2")
+
 
 ![Screenshot](workflow.png)
 
