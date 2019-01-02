@@ -1,6 +1,6 @@
 ### Scripts: 
 
-   #### QC, DEMUX and Utilities
+   #### DEMUX, QC and Utilities
     bcl2fastq.HPC.sh:
             Demultiplexes Illumina NextSeq 500 samples (bcl intensities to fastq).
             Performs quality control assessments using FASTQC. 
@@ -42,7 +42,12 @@
         
         Usage: 
         $ processCounts.sh <1> or <2>
-
+   
+   #### CHIP-seq
+      
+      https://github.com/taoliu/MACS
+      https://deeptools.readthedocs.io/en/develop/
+      
 ![Screenshot](workflow.png)
 
 
