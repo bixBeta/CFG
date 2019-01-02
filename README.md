@@ -1,6 +1,6 @@
-## Scripts: 
+### Scripts: 
 
-  ### DEMUX, QC and Utilities
+#### DEMUX, QC and Utilities
     bcl2fastq.HPC.sh:
             Demultiplexes Illumina NextSeq 500 samples (bcl intensities to fastq).
             Performs quality control assessments using FASTQC. 
@@ -21,7 +21,7 @@
         Usage: 
             $ python reveRse.py < indices.txt >
 
-  ### RNA-seq
+#### RNA-seq
                   
     star.align.HPC.sh: 
             Aligns PE or SE fastq samples to reference genome using star ultrafast aligner. 
@@ -43,7 +43,7 @@
         Usage: 
         $ processCounts.sh <1> or <2>
    
-  ### CHIP-seq
+#### CHIP-seq
    https://github.com/taoliu/MACS
    
    https://deeptools.readthedocs.io/en/develop/
