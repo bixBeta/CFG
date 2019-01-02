@@ -1,4 +1,4 @@
-## Center for Functional Genomics - HPC compatible: 
+## Scripts for Center for Functional Genomics HPC: 
 
 ### DEMUX, QC and Utilities
 
