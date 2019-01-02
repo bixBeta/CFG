@@ -44,8 +44,8 @@
         $ processCounts.sh <1> or <2>
    
    #### CHIP-seq
-   [MACS2](https://github.com/taoliu/MACS "MACS2")
-
+   https://github.com/taoliu/MACS
+   https://deeptools.readthedocs.io/en/develop/
 
 ![Screenshot](workflow.png)
 
