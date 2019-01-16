@@ -1,24 +1,19 @@
 #!/usr/bin/python
 
 import pandas as pd
-import os;
+import os
+import sys
 
 os.getcwd( )
-os.chdir('/Users/bix/Desktop/subset.0021/')
-
-pd.read_csv("cpGs.genes.csv")
-barCode = pd.read_csv("barCode.to.ID.csv")
-
-d = barCode('val1').to_dict()
-betas = pd.read_csv("0021.geneSubset.csv")
-
-# betas.index = betas['cpGs']
-
-betas.set_index('cpGs')
+# os.chdir('/Users/bix/Desktop/subset.0021/') # change dir if needed
 
 
-#df.rename(columns=dict(zip(barCode["val1"], [""])))
-betas.rename(columns=dict(zip(barCode['val1'], barCode['val2'])))
+barCode = pd.read_csv(sys.argv[-1]) # read in the key value combinations
 
-#df1.columns=[df2['val2']]
-#betas.columns=[barCode['val2']]
+betas = pd.read_csv(sys.argv[-2]) # read in the final dropped beta values with centrix id's as colnames
+
+betas.set_index(sys.argv[-3]) # specify string from the -2 argument file to use as index[i]
+
+# rename based on specified key value relationship (manually change)
+finalSet = betas.rename(columns=dict(zip(barCode['centrix'], barCode['Sample_Name']))) 
+
