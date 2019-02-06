@@ -3,7 +3,7 @@
 if [ "$1" = "help" ] || [ -z "$1" ]
     then
     echo ""
-    echo " usage = bash processCounts.sh <1> or <2> ; where 1 is for first strand counts and 2 is for reverse strand counts "
+    echo " usage = bash processCounts.sh <1> or <2> ; where 1 is for first strand counts and 2 is for reverse strand counts, 0 for unstranded counts "
     echo ""
 
 
