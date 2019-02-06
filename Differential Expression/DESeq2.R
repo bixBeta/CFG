@@ -5,13 +5,12 @@
 ## -------------------------------------------------------------------------------------------------------------------
 ## -------------------------------------------------------------------------------------------------------------------
 
-		# USAGE SYNTAX
-		# $ Rscript DESeq2.R <Experiment.Name> <Numerator> <Denominator> 
+		# USAGE SYNTAX:
+        # $ Rscript DESeq2.R <Experiment.Name> <Numerator> <Denominator>
 
 ## -------------------------------------------------------------------------------------------------------------------
 ## -------------------------------------------------------------------------------------------------------------------
 ## -------------------------------------------------------------------------------------------------------------------
-
 
 suppressWarnings(library("dplyr"))
 suppressWarnings(library("DESeq2"))
@@ -86,6 +85,8 @@ vsd <- varianceStabilizingTransformation(dds, blind=T)
 # save normalized values
 write.table(as.data.frame(assay(rld)),file = paste0(outputPrefix, ".rlog-transformed-counts.txt"), sep = '\t')
 write.table(as.data.frame(assay(vsd)),file = paste0(outputPrefix, ".vst-transformed-counts.txt"), sep = '\t')
+system("mkdir normCounts")
+system("mv *rlog-transformed-counts.txt *vst-transformed-counts.txt normCounts")
 
 ## -------------------------------------------------------------------------------------------------------------------
 ## use contrast to drop deseq2 results for specific conditions; following are some expamples
@@ -105,6 +106,12 @@ summary(custom)
 
 save(countTable, phenoData, dds, rawCounts, rld, vsd, custom, file = paste0(outputPrefix, ".Rdata"))
 write.csv(custom, file = paste0(outputPrefix, ".", numerator, ".", denominator, ".results.csv"))
+system("mkdir DGE_results")
+system("mv *.results.csv DGE_results")
+
+system("mkdir DESeq2_output")
+system("mv normCounts DGE_results *.Rdata DESeq2_output")
+
 
 custom
 
@@ -113,4 +120,6 @@ print(" ", quote = F)
 print("                              DONE   :)                          ", quote = F)
 print(" ", quote = F)
 print(" ", quote = F)
+
+
 
