@@ -51,9 +51,9 @@ phenoData$sampleName == colnames(countTable)
 
 # FOR HTSEQ  -- CHECK 
 #grep("__",x = row.names(countTable))
-#countTable[grep("__",x = row.names(countTable)),] # rm if TRUE
+countTable[grep("__",x = row.names(countTable)),] # uncomment line 56 if line 54 is True
 
-#countTable <- countTable[1:26364,] # check rows total
+#countTable <- countTable[1:(nrow(countTable) - 5),] # remove last five rows contatining htseq stats
 #countTable[grep("__",x = row.names(countTable)),] # verify
 
 print(" ", quote = F)
