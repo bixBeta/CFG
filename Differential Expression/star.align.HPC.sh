@@ -16,9 +16,9 @@
 
 if [  $1 == "help" ] || [ -z "$1" ]; then
 
-	echo ""
-	echo "----------------------------------------------------------------------------------------------------------------------"
-	echo "navigate to the folder contatining all fastqs and execute using sbatch star.align.HPC.sh <SE or PE> <ORG> <ASSEMBLY>"
+    echo ""
+    echo "----------------------------------------------------------------------------------------------------------------------"
+    echo "navigate to the folder contatining all fastqs and execute using sbatch star.align.HPC.sh <SE or PE> <ORG> <ASSEMBLY>"
     echo "----------------------------------------------------------------------------------------------------------------------"
     echo ""
     echo " 		Specify SE for Single-end and PE for Paired-end libraries"
