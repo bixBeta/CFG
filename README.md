@@ -46,9 +46,9 @@
    
 ### CHIP-seq
 
-   [](https://github.com/taoliu/MACS)
+   [MACS](https://github.com/taoliu/MACS)
    
-   [](https://deeptools.readthedocs.io/en/develop/)
+   [DeepTools](https://deeptools.readthedocs.io/en/develop/)
 
 ![Screenshot](workflow.png)
 
